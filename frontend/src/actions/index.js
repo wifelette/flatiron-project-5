@@ -1,4 +1,4 @@
-export default action1 = () => {
+export default () => {
   return {
     type: "ACTION_1",
   };
