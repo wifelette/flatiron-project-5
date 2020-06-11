@@ -4,7 +4,7 @@
 
 - [ ] The code should be written in ES6 as much as possible
 - [x] Use the [`create-react-app`](https://github.com/facebook/create-react-app) generator to start your project
-- [ ] Your app should have one HTML page to render your react-redux application
+- [ ] Your app should have one HTML page to render your `react-redux` application
 
 ### Details
 
