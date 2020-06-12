@@ -1,5 +1,10 @@
 import React from "react";
 
-export default function FilterButton({ filter }) {
-  return <>{filter}</>;
+/**
+ * @param {object} props
+ * @param {string} props.filter
+ * @returns {React.ReactNode}
+ */
+export default function FilterButton(props) {
+  return <>{props.filter}</>;
 }
