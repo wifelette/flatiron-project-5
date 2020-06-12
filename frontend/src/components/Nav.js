@@ -1,6 +1,8 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import Divider from "./presentational/Divider";
+import NavItem from "./NavItem";
 
 export default function Nav() {
   return (
@@ -11,29 +13,28 @@ export default function Nav() {
         id="accordionSidebar"
       >
         {/* Sidebar - Brand  */}
-        <a
-          className="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+        <Link
+          to="/"
+          className="sidebar-brand d-flex align-items-center justify-content-center a"
         >
           <div className="sidebar-brand-icon rotate-n-15">
             <i className="fas fa-laugh-wink"></i>
           </div>
           <div className="sidebar-brand-text mx-3">Schedule</div>
-        </a>
+        </Link>
 
-        {/* Divider  */}
-        <hr className="sidebar-divider my-0" />
+        <Divider />
 
         {/* Nav Item - Dashboard  */}
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
+          <Link to="/" className="nav-link a">
             <i className="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
-          </a>
+          </Link>
         </li>
+        <NavItem to="/">Dashboard</NavItem>
 
-        {/* Divider  */}
-        <hr className="sidebar-divider" />
+        <Divider />
 
         {/* Nav Item - Kiddos Collapse Menu  */}
         <li className="nav-item">
@@ -82,8 +83,7 @@ export default function Nav() {
           </Link>
         </li>
 
-        {/* Divider  */}
-        <hr className="sidebar-divider d-none d-md-block" />
+        <Divider />
 
         {/* Sidebar Toggler (Sidebar)  */}
         <div className="text-center d-none d-md-inline">
