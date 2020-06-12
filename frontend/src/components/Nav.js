@@ -25,19 +25,14 @@ export default function Nav() {
 
         <Divider />
 
-        {/* Nav Item - Dashboard  */}
-        <li className="nav-item">
-          <Link to="/" className="nav-link a">
-            <i className="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </Link>
-        </li>
-        <NavItem to="/">Dashboard</NavItem>
+        <NavItem route="/" icon="tachometer-alt">
+          Dashboard
+        </NavItem>
 
         <Divider />
 
         {/* Nav Item - Kiddos Collapse Menu  */}
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <a
             className="nav-link collapsed"
             href="#"
@@ -56,7 +51,6 @@ export default function Nav() {
             data-parent="#accordionSidebar"
           >
             <div className="bg-white py-2 collapse-inner rounded">
-              {/* <h6 className="collapse-header">Your Kiddos:</h6>  */}
               <a className="collapse-item" href="Kiddo1.html">
                 Child 1
               </a>
@@ -65,23 +59,15 @@ export default function Nav() {
               </a>
             </div>
           </div>
-        </li>
+        </li> */}
 
-        {/* Nav Item - Activites  */}
-        <li className="nav-item">
-          <Link to="/activities" className="nav-link a">
-            <i className="fas fa-fw fa-bicycle"></i>
-            <span>Activities</span>
-          </Link>
-        </li>
+        <NavItem route="/activities" icon="bicycle">
+          Activities
+        </NavItem>
 
-        {/* Nav Item - Materials  */}
-        <li className="nav-item">
-          <Link to="/materials" className="nav-link a">
-            <i className="fas fa-fw fa-shopping-cart"></i>
-            <span>Materials</span>
-          </Link>
-        </li>
+        <NavItem route="/materials" icon="shopping-cart">
+          Materials
+        </NavItem>
 
         <Divider />
 
