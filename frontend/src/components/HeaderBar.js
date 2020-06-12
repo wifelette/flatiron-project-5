@@ -16,7 +16,7 @@ export default function HeaderBar() {
           {"options.button"}
         </button>
         {/* This options.filter prop isn't fully set up, just stubbed */}
-        <FilterButton filter="options.filter" />
+        <FilterButton filter="[button]options.filter[/button]" />
       </h1>
     </div>
   );
