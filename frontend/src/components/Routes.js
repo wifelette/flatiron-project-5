@@ -7,9 +7,14 @@ import Dashboard from "./Dashboard";
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Dashboard} />
-      <Route path="/materials" exact component={Materials} />
-      <Route path="/activities" exact component={Activities} />
+      <Route path="/" name="Dashboard" exact component={Dashboard} />
+      <Route path="/materials" name="Materials" exact component={Materials} />
+      <Route
+        path="/activities"
+        name="Activities"
+        exact
+        component={Activities}
+      />
     </Switch>
   );
 }

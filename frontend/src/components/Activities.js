@@ -12,9 +12,5 @@ export default function Activities() {
     const items = await data.json;
     console.log(items);
   };
-  return (
-    <div>
-      <h1>Activities Page</h1>
-    </div>
-  );
+  return <div></div>;
 }

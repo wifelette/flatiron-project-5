@@ -1,19 +1,17 @@
 import React from "react";
 import "../../App.css";
-import { Link } from "react-router-dom";
 import Divider from "./Divider";
 import NavItem from "./NavItem";
 import Logo from "./Logo";
+import Toggler from "./Toggler";
 
 export default function Nav() {
   return (
     <div>
-      {/* Sidebar  */}
       <ul
         className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
         id="accordionSidebar"
       >
-        {/* Sidebar - Brand  */}
         <Logo />
 
         <Divider />
@@ -34,15 +32,8 @@ export default function Nav() {
 
         <Divider />
 
-        {/* Sidebar Toggler (Sidebar)  */}
-        <div className="text-center d-none d-md-inline">
-          <button
-            className="rounded-circle border-0"
-            id="sidebarToggle"
-          ></button>
-        </div>
+        <Toggler />
       </ul>
-      {/* End of Sidebar  */}
     </div>
   );
 }
