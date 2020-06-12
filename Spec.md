@@ -8,10 +8,10 @@
 
 ### Details
 
-- [ ] There should be 2 container components.
+- [x] There should be 2 container components.
 - [ ] There should be 5 stateless components.
-- [ ] There should be 3 routes.
-- [ ] The Application must make use of `react-router` and proper RESTful routing.
+- [x] There should be 3 routes.
+- [x] The Application must make use of `react-router` and proper RESTful routing.
 - [ ] Use Redux middleware to respond to and modify state change.
 - [ ] Make use of async actions and `redux-thunk` middleware to send data to and receive data from a server.
 - [ ] Rails API backend that handles data persistence with a database. Use `fetch()` within your actions to `GET` and `POST` data from your API. Do not use jQuery methods.
