@@ -1,5 +1,10 @@
 import React from "react";
+import HeaderBar from "./header/HeaderBar";
 
 export default function Dashboard() {
-  return <></>;
+  return (
+    <div>
+      <HeaderBar headline="Dashboard" mainButton="Add a New Day" />
+    </div>
+  );
 }
