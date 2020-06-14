@@ -8,6 +8,12 @@ export default function Activities() {
     fetchActivities();
   }, []);
 
+  const fetchActivities = async () => {
+    const data = await fetch(ACTIVITIES_URL);
+    const items = await data.json();
+    console.log(items);
+  };
+
   let [isFiltered, setIsFiltered] = useState(false);
 
   let filterDetails = {
@@ -15,12 +21,6 @@ export default function Activities() {
     show: "Show Unscheduled Activities",
     isFiltered,
     onFilter: () => setIsFiltered(!isFiltered),
-  };
-
-  const fetchActivities = async () => {
-    const data = await fetch(ACTIVITIES_URL);
-    const items = await data.json();
-    console.log(items);
   };
 
   return (
