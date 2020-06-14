@@ -3,7 +3,7 @@ import React from "react";
 /**
  * @param {object} props
  * @param { () => void } props.onClick
- * @param {string} [props.style]
+ * @param {string} [props.css]
  * @param {string} props.body
  * @param {string} [props.size]
  * @param {string} props.classes
@@ -11,7 +11,7 @@ import React from "react";
  */
 
 export default function SubmitButton({
-  style = "success",
+  css: style = "success",
   onClick,
   body,
   size = "mt-2",

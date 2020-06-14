@@ -14,7 +14,7 @@ export default function FilterButton({ filter }) {
     return (
       <SubmitButton
         onClick={filter.onFilter}
-        style="outline-dark"
+        css="outline-dark"
         size="mr-2"
         classes="float-right shadow"
         body={body}
