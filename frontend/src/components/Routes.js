@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Activities from "./Activities";
-import Materials from "./Materials";
+import Materials from "./materials/Materials";
 import Dashboard from "./Dashboard";
 
 export default function Routes() {
