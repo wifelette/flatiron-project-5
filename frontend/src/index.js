@@ -8,6 +8,7 @@ import { allReducers } from "./reducers"; // No need to explicitly name Index.js
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
+// composeWithDevTools is just a cleaner way of getting the Redux browser extension to work. You pass it in as a second parameter to your store.
 const store = createStore(allReducers, composeWithDevTools());
 
 ReactDOM.render(
