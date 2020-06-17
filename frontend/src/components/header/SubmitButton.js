@@ -6,7 +6,7 @@ import React from "react";
  * @param {string} [props.css]
  * @param {string} props.body
  * @param {string} [props.size]
- * @param {string} props.classes
+ * @param {string} [props.classes]
  * @returns {JSX.Element}
  */
 
@@ -20,7 +20,10 @@ export default function SubmitButton({
   return (
     <button
       type="submit"
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick();
+      }}
       className={`btn btn-${style} ${size} ${classes}`}
     >
       {body}
