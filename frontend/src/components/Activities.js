@@ -23,6 +23,8 @@ export default function Activities() {
     onFilter: () => setIsFiltered(!isFiltered),
   };
 
+  let columnDetails = ["Activity", "Materials", "Scheduled For"];
+
   return (
     <div>
       <HeaderBar
