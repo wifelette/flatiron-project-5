@@ -7,7 +7,9 @@ import AddMaterialsForm from "./AddMaterialsForm";
 
 export default function Materials() {
   // useState returns a set of things: (1) the current state, (2) a function used to update the current state. Then, later down below, we'll make a fetch request, in which we use `setItems` to update `items` to the current state of the data in the backend DB
-  let [items, setItems] = useState(null);
+  let [unfilteredMaterials, setUnfilteredMaterials] = useState(
+    /** @type {Material[] | null} */ (null)
+  );
 
   // useEffect will make the Fetch call(s) run immediately when the Component renders
   // The [] tells it only to run fetchActivities the first time the component is rendered.
@@ -20,9 +22,7 @@ export default function Materials() {
   const fetchMaterials = async () => {
     const data = await fetch(`${MATERIALS_URL}?sort=name&include=activities`);
     const newItems = await data.json();
-    setItems(newItems.data);
-    console.log("Items inside fetchMaterials:");
-    console.log(newItems.data);
+    setUnfilteredMaterials(newItems.data);
   };
 
   let [isFiltered, setIsFiltered] = useState(false);
@@ -36,7 +36,28 @@ export default function Materials() {
 
   let [isShowingForm, setShowingForm] = useState(false);
 
-  let columnDetails = ["Material", "Used For"];
+  let columnNames = ["Material", "Used For"];
+
+  let rows = null;
+  let materials = unfilteredMaterials;
+
+  if (materials !== null) {
+    if (isFiltered) {
+      materials = materials.filter((m) => m.activities.length > 0);
+    }
+
+    rows = materials.map((material) => {
+      let columns = [
+        material.name,
+        material.activities.map((a) => a.name).join(", "),
+      ];
+
+      return {
+        id: material.id,
+        columns,
+      };
+    });
+  }
 
   return (
     <div>
@@ -49,7 +70,7 @@ export default function Materials() {
         }}
       />
       {isShowingForm ? <AddMaterialsForm /> : null}
-      <Table columns={columnDetails} rows={items} />
+      <Table columns={columnNames} rows={rows} />
     </div>
   );
 }
