@@ -6,7 +6,7 @@ import TableBody from "./TableBody";
  *
  * @param {object} props
  *  @param {string[]} props.columns
- *  @param {Material[] | null} props.rows
+ *  @param { Array<{ id: string; columns: string[]}> | null} props.rows
  * @returns {JSX.Element}
  */
 export default function Table({ columns, rows }) {
