@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Activities from "./Activities";
+import Activities from "./activities/Activities";
 import Materials from "./materials/Materials";
 import Dashboard from "./Dashboard";
 

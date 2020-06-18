@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ACTIVITIES_URL } from "../App";
-import "../App.css";
-import HeaderBar from "./header/HeaderBar";
+import { ACTIVITIES_URL } from "../../App";
+import "../../App.css";
+import HeaderBar from "../header/HeaderBar";
 
 export default function Activities() {
   useEffect(() => {
