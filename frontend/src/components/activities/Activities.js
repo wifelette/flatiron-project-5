@@ -2,16 +2,25 @@ import React, { useEffect, useState } from "react";
 import { ACTIVITIES_URL } from "../../App";
 import "../../App.css";
 import HeaderBar from "../header/HeaderBar";
+import Table from "../tables/Table";
+import AddActivitiesForm from "./AddActivitiesForm";
+import { shortDate } from "../../utils/dates";
 
 export default function Activities() {
+  let [unfilteredActivities, setUnfilteredActivities] = useState(
+    /** @type {Activity[] | null } */ (null)
+  );
+
   useEffect(() => {
     fetchActivities();
   }, []);
 
   const fetchActivities = async () => {
-    const data = await fetch(ACTIVITIES_URL);
-    const items = await data.json();
-    console.log(items);
+    const data = await fetch(
+      `${ACTIVITIES_URL}?sort=name&include=materials,days`
+    );
+    const newActivities = await data.json();
+    setUnfilteredActivities(newActivities.data);
   };
 
   let [isFiltered, setIsFiltered] = useState(false);
@@ -23,7 +32,31 @@ export default function Activities() {
     onFilter: () => setIsFiltered(!isFiltered),
   };
 
+  let [isShowingForm, setShowingForm] = useState(false);
+
   let columnDetails = ["Activity", "Materials", "Scheduled For"];
+
+  let rows = null;
+  let activities = unfilteredActivities;
+
+  if (activities !== null) {
+    if (isFiltered) {
+      activities = activities.filter((a) => a.days.length > 0);
+    }
+
+    rows = activities.map((activity) => {
+      let columns = [
+        activity.name,
+        activity.materials.map((m) => m.name).join(", "),
+        activity.days.map((d) => shortDate(d.date)).join(", "),
+      ];
+
+      return {
+        id: activity.id,
+        columns,
+      };
+    });
+  }
 
   return (
     <div>
@@ -31,7 +64,12 @@ export default function Activities() {
         headline="Activities"
         mainButton="Create a New Activity"
         filter={filterDetails}
+        onButtonClick={() => {
+          setShowingForm(!isShowingForm);
+        }}
       />
+      {isShowingForm ? <AddActivitiesForm /> : null}
+      <Table columns={columnDetails} rows={rows} />
     </div>
   );
 }
