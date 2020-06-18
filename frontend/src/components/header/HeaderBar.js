@@ -1,6 +1,5 @@
 import React from "react";
 import FilterButton from "./FilterButton";
-import AddMaterialsForm from "../materials/AddMaterialsForm";
 
 /**
  *

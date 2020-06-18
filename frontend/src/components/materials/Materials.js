@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { MATERIALS_URL } from "../../App";
 import "../../App.css";
 import HeaderBar from "../header/HeaderBar";
 import Table from "../tables/Table";
-import SubmitButton from "../header/SubmitButton";
-import { format } from "url";
 import AddMaterialsForm from "./AddMaterialsForm";
 
 export default function Materials() {
