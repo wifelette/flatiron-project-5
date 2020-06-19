@@ -9,8 +9,10 @@
 ### Details
 
 - [x] There should be 2 container components.
+  - _Nav_
 - [x] There should be 5 stateless components.
 - [x] There should be 3 routes.
+  - _Dashboard, Materials, Activities_
 - [x] The Application must make use of `react-router` and proper RESTful routing.
 - [ ] Use Redux middleware to respond to and modify state change.
 - [ ] Make use of async actions and `redux-thunk` middleware to send data to and receive data from a server.
@@ -28,3 +30,4 @@
 ### Things the Reviewer may ask about
 
 - [x] Who is your User? What is their pain point? How do they use our solution to overcome this problem?
+  - _The user of this app is a parent home with their children during the pandemic, to help schedule activities for days of the week, and keep track of needed materials._
