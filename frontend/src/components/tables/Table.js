@@ -7,9 +7,10 @@ import TableBody from "./TableBody";
  * @param {object} props
  *  @param {string[]} props.columns
  *  @param { Array<{ id: string; columns: string[]}> | null} props.rows
+ *  @param { (id: string) => void } props.onDeleteRow
  * @returns {JSX.Element}
  */
-export default function Table({ columns, rows }) {
+export default function Table({ columns, rows, onDeleteRow }) {
   return (
     <div className="col-xl-10 col-md-6 mb-4">
       <div className="card border-left-primary shadow">
@@ -25,7 +26,7 @@ export default function Table({ columns, rows }) {
             </tr>
           </thead>
           <tbody>
-            <TableBody rows={rows} />
+            <TableBody onDeleteRow={onDeleteRow} rows={rows} />
           </tbody>
         </table>
       </div>

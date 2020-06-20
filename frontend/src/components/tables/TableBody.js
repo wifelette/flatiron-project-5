@@ -5,9 +5,10 @@ import "../../App.css";
 /**
  * @param {object} props
  *  @param {Array<{ id: string, columns: string[] }> | null} props.rows
+ *  @param { (id: string) => void } props.onDeleteRow
  * @returns {JSX.Element}
  */
-export default function TableBody({ rows }) {
+export default function TableBody({ rows, onDeleteRow }) {
   // const itemRows = useSelector((state) => state.name);
 
   if (!rows) {
@@ -22,7 +23,11 @@ export default function TableBody({ rows }) {
                 <td key={i}>{column}</td>
               ))}
               <td>
-                <button type="button" className="close delete-model">
+                <button
+                  onClick={() => onDeleteRow(row.id)}
+                  type="button"
+                  className="close delete-model"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </td>

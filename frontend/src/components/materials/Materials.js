@@ -5,6 +5,7 @@ import HeaderBar from "../header/HeaderBar";
 import Table from "../tables/Table";
 import AddMaterialsForm from "./AddMaterialsForm";
 import { useSelector, useDispatch } from "../../index";
+import { destroy } from "../../utils/jsonapi";
 
 export default function Materials() {
   let unfilteredMaterials = useSelector((state) => state.materials);
@@ -20,7 +21,9 @@ export default function Materials() {
 
   // This is the fetch where we snag the current snapshop of the data in the DB, and then, we use `useState`, to persist that snapshot into React's front-end store, so we're always working with the most current data
   const fetchMaterials = async () => {
-    const data = await fetch(`${MATERIALS_URL}?sort=name&include=activities`);
+    const data = await fetch(
+      `${MATERIALS_URL}.json?sort=name&include=activities`
+    );
 
     /** @type {{ data: Material[] }} */
     const newItems = await data.json();
@@ -30,6 +33,15 @@ export default function Materials() {
       items: newItems.data,
     });
   };
+
+  /**
+   * @param {string} id
+   */
+  async function deleteMaterial(id) {
+    await destroy(`${MATERIALS_URL}/${id}`);
+
+    dispatch({ type: "REMOVE_MATERIAL", id });
+  }
 
   let [isFiltered, setIsFiltered] = useState(false);
 
@@ -76,7 +88,7 @@ export default function Materials() {
         }}
       />
       {isShowingForm ? <AddMaterialsForm /> : null}
-      <Table columns={columnNames} rows={rows} />
+      <Table onDeleteRow={deleteMaterial} columns={columnNames} rows={rows} />
     </div>
   );
 }
