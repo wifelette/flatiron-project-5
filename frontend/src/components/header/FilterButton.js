@@ -1,5 +1,4 @@
 import React from "react";
-import SubmitButton from "./SubmitButton";
 
 /**
  * @param {object} props
