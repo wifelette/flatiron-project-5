@@ -17,6 +17,7 @@
 - [ ] Use Redux middleware to respond to and modify state change.
 - [ ] Make use of async actions and `redux-thunk` middleware to send data to and receive data from a server.
 - [ ] Rails API backend that handles data persistence with a database. Use `fetch()` within your actions to `GET` and `POST` data from your API. Do not use jQuery methods.
+  - _async function create_ in _jsonapi.js_
 - [ ] Your client-side application should handle the display of data with minimal data manipulation.
 - [x] Your application should have some minimal styling: react-bootstrap or hand-written are fine
 - [ ] Once your app is complete, [fill out this checklist](https://docs.google.com/forms/d/e/1FAIpQLSfX7qH_FqFqJ9vMMhtlHSYxhhafKJm8fe01IvsFNFitFC2nOA/viewform).
