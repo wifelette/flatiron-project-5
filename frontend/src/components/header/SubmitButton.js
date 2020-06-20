@@ -18,6 +18,7 @@ export default function SubmitButton({
   disabled,
 }) {
   return (
+    // disabled is an HTML property that makes a button disabled if it's true. So by doing disabled=disabled, we're effectively toggling it to a disabled state upon being clicked. When `isSaving` becomes true, `disabled` becomes true
     <button
       type="submit"
       disabled={disabled}
