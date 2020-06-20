@@ -4,12 +4,12 @@ import "../../App.css";
 import HeaderBar from "../header/HeaderBar";
 import Table from "../tables/Table";
 import AddMaterialsForm from "./AddMaterialsForm";
+import { useSelector, useDispatch } from "../../index";
 
 export default function Materials() {
-  // useState returns a set of things: (1) the current state, (2) a function used to update the current state. Then, later down below, we'll make a fetch request, in which we use `setItems` to update `items` to the current state of the data in the backend DB
-  let [unfilteredMaterials, setUnfilteredMaterials] = useState(
-    /** @type {Material[] | null} */ (null)
-  );
+  let unfilteredMaterials = useSelector((state) => state.materials);
+
+  let dispatch = useDispatch();
 
   // useEffect will make the Fetch call(s) run immediately when the Component renders
   // The [] tells it only to run fetchActivities the first time the component is rendered.
@@ -21,8 +21,14 @@ export default function Materials() {
   // This is the fetch where we snag the current snapshop of the data in the DB, and then, we use `useState`, to persist that snapshot into React's front-end store, so we're always working with the most current data
   const fetchMaterials = async () => {
     const data = await fetch(`${MATERIALS_URL}?sort=name&include=activities`);
+
+    /** @type {{ data: Material[] }} */
     const newItems = await data.json();
-    setUnfilteredMaterials(newItems.data);
+
+    dispatch({
+      type: "INITIALIZE_MATERIALS",
+      items: newItems.data,
+    });
   };
 
   let [isFiltered, setIsFiltered] = useState(false);

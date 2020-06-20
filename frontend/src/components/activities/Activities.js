@@ -5,11 +5,12 @@ import HeaderBar from "../header/HeaderBar";
 import Table from "../tables/Table";
 import AddActivitiesForm from "./AddActivitiesForm";
 import { shortDate } from "../../utils/dates";
+import { useSelector, useDispatch } from "../../index";
 
 export default function Activities() {
-  let [unfilteredActivities, setUnfilteredActivities] = useState(
-    /** @type {Activity[] | null } */ (null)
-  );
+  let unfilteredActivities = useSelector((state) => state.activities);
+
+  let dispatch = useDispatch();
 
   useEffect(() => {
     fetchActivities();
@@ -19,8 +20,14 @@ export default function Activities() {
     const data = await fetch(
       `${ACTIVITIES_URL}?sort=name&include=materials,days`
     );
+
+    /** @type {{ data: Activity[] }} */
     const newActivities = await data.json();
-    setUnfilteredActivities(newActivities.data);
+
+    dispatch({
+      type: "INITIALIZE_ACTIVITIES",
+      items: newActivities.data,
+    });
   };
 
   let [isFiltered, setIsFiltered] = useState(false);
