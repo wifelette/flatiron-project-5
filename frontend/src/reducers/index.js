@@ -1,7 +1,13 @@
 import { combineReducers } from "redux";
-import reducer1 from "./reducer1";
+import activities from "./activities";
+import materials from "./materials";
+
+/**
+ * @typedef {import("./activities").ActivityAction | import("./materials").MaterialAction} AppAction
+ * @typedef { { activities: import("./activities").ActivityState, materials: import("./materials").MaterialState } } AppState
+ */
 
 export const allReducers = combineReducers({
-  reducer1,
-  // reducer2,
+  activities,
+  materials,
 });
