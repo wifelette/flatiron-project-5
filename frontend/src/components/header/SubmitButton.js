@@ -2,28 +2,25 @@ import React from "react";
 
 /**
  * @param {object} props
- * @param { () => void } props.onClick
  * @param {string} [props.css]
  * @param {string} props.body
  * @param {string} [props.size]
  * @param {string} [props.classes]
+ * @param {boolean} [props.disabled]
  * @returns {JSX.Element}
  */
 
 export default function SubmitButton({
   css: style = "success",
-  onClick,
   body,
   size = "mt-2",
   classes,
+  disabled,
 }) {
   return (
     <button
       type="submit"
-      onClick={(e) => {
-        e.preventDefault();
-        onClick();
-      }}
+      disabled={disabled}
       className={`btn btn-${style} ${size} ${classes}`}
     >
       {body}
