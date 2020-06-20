@@ -2,7 +2,7 @@ import { payloadForFormData } from "./form-payload";
 
 /**
  * This is a "utility function" to fetch a URL as JSON
- * without always needing to await `response.json()`. The stuff right below this comment is TypeScript documentation.
+ * without always needing to await `response.json()`.
  *
  * @template T
  * @param {string} url
@@ -26,7 +26,7 @@ export async function getJSON(url) {
   return response.json(); // This is also a promise
 }
 
-// This is the guts of the fetch-DELETE request we're going to use on the various pages to interact with the Rails controller.
+// This is the guts of the fetch-DELETE request we're going to use in various components to interact with the Rails controller.
 
 /**
  * @param {string} url
@@ -47,7 +47,7 @@ export async function destroy(url) {
   }
 }
 
-// This is the guts of the fetch-POST request we're going to use on the various pages to interact with the Rails controller.
+// This is the guts of the fetch-POST request we're going to use in various components to interact with the Rails controller.
 
 /**
  * @template T
@@ -56,13 +56,6 @@ export async function destroy(url) {
  * @returns {Promise<T>}
  */
 export async function create(url, formData) {
-  // For attributes, this function accepts either a FormData or an object. If `attributes` is iterable, then this code assumes that it's a `FormData`, and uses `Object.fromEntries` to turn it into an object.
-
-  // This is equivalent (as a ternary):
-  // // let attributes = inputAttributes[Symbol.iterator] // check if inputAttributes is iterable
-  // //   ? Object.fromEntries(inputAttributes)
-  // //   : inputAttributes;
-
   let response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(payloadForFormData(formData)),
@@ -81,7 +74,7 @@ export async function create(url, formData) {
   return response.json();
 }
 
-// This is the guts of the fetch-PATCH request we're going to use on the various pages to interact with the Rails controller.
+// This is the guts of the fetch-PATCH request we're going to use in various components to interact with the Rails controller.
 
 /**
  *

@@ -1,5 +1,5 @@
 /**
- * This function takes the data that comes out of my form, and converts it into the precise data structure JSON:API wants.
+ * This function takes the data that comes out of my form, and converts it into the precise data structure JSON:API wants. It's complicated and I had help from a senior developer who had this code on hand in their personal library. It makes it easy for me to get the data out of my forms. I documented it all when I first learned how it worked...but I'm not even sure I could explain it all well again now several weeks later :p
  *
  * @param {FormData} formData
  */
