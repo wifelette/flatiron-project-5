@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { createStore, Store } from "redux";
+import { createStore } from "redux";
 import { allReducers } from "./reducers"; // No need to explicitly name Index.js
 import {
   Provider,
@@ -19,6 +19,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 /**
  * @typedef {import("./reducers").AppState} AppState
  * @typedef {import("./reducers").AppAction} AppAction
+ */
+
+/**
+ * @template T, U
+ * @typedef {import("redux").Store<T, U>} Store
  */
 
 /**
