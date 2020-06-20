@@ -30,3 +30,8 @@
     </div>
   </div>
 </li>;
+
+// useState returns a set of things: (1) the current state, (2) a function used to update the current state. Then, later down below, we'll make a fetch request, in which we use `setItems` to update `items` to the current state of the data in the backend DB
+let [unfilteredMaterials, setUnfilteredMaterials] = useState(
+  /** @type {Material[] | null} */ (null)
+);
