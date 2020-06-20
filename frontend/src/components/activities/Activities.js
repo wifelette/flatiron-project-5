@@ -18,7 +18,7 @@ export default function Activities() {
 
   const fetchActivities = async () => {
     const data = await fetch(
-      `${ACTIVITIES_URL}?sort=name&include=materials,days`
+      `${ACTIVITIES_URL}.json?sort=name&include=materials,days`
     );
 
     /** @type {{ data: Activity[] }} */
@@ -76,7 +76,7 @@ export default function Activities() {
         }}
       />
       {isShowingForm ? <AddActivitiesForm /> : null}
-      <Table columns={columnDetails} rows={rows} />
+      <Table onDeleteRow={() => null} columns={columnDetails} rows={rows} />
     </div>
   );
 }
