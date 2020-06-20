@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../../App.css";
 import SubmitButton from "../header/SubmitButton";
 
-export default function AddActivitiessForm() {
+export default function AddActivitiesForm() {
   function addActivities() {
+    let data = new FormData(form.current);
     return;
   }
 
+  let form = /** @type {import("react").MutableRefObject<HTMLFormElement>} */ (useRef());
+
   return (
-    <form>
+    <form
+      ref={form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        addActivities();
+      }}
+    >
       <div className="col-xl-10 col-md-6 mb-4">
         <div className="card border-left-success shadow h-100">
           <div className="form-group card-body">
@@ -19,6 +28,7 @@ export default function AddActivitiessForm() {
               Activity Name
             </label>
             <input
+              autoFocus
               type="text"
               name="name"
               className="form-control"
@@ -26,7 +36,7 @@ export default function AddActivitiessForm() {
             />
             <br />
             <p className="font-weight-bold">Materials to Add</p>
-            <SubmitButton body="Create" onClick={addActivities} />
+            <SubmitButton body="Create" />
           </div>
         </div>
       </div>
