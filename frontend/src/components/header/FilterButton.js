@@ -12,13 +12,12 @@ export default function FilterButton({ filter }) {
     let body = filter.isFiltered ? filter.show : filter.hide;
 
     return (
-      <SubmitButton
+      <button
         onClick={filter.onFilter}
-        css="outline-dark"
-        size="mr-2"
-        classes="float-right shadow"
-        body={body}
-      />
+        className={"btn btn-outline-dark mr-2 float-right shadow"}
+      >
+        {body}
+      </button>
     );
   }
 
