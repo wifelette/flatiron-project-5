@@ -34,9 +34,12 @@ export default (state = [], action) => {
       let newList = [...state, action.item];
 
       newList.sort((a, b) => {
-        if (a.name < b.name) {
+        let aName = a.name.toLowerCase();
+        let bName = b.name.toLowerCase();
+
+        if (aName < bName) {
           return -1;
-        } else if (a.name > b.name) {
+        } else if (aName > bName) {
           return 1;
         } else {
           return 0;
