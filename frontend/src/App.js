@@ -9,9 +9,9 @@ import Footer from "./components/Footer";
 import Content from "./components/Content";
 import ScrollToTop from "./components/ScrollToTop";
 
-export const MATERIALS_URL = "http://localhost:3000/materials.json";
-export const DAYS_URL = "http://localhost:3000/days.json";
-export const ACTIVITIES_URL = "http://localhost:3000/activities.json";
+export const MATERIALS_URL = "http://localhost:3000/materials";
+export const DAYS_URL = "http://localhost:3000/days";
+export const ACTIVITIES_URL = "http://localhost:3000/activities";
 
 function App() {
   // const dispatch = useDispatch();
