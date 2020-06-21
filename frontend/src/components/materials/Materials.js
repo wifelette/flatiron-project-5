@@ -15,6 +15,7 @@ export default function Materials() {
   // useEffect will make the Fetch call(s) run immediately when the Component renders
   // The [] tells it only to run fetchActivities the first time the component is rendered.
   // If you put the name of a variable into the [], it would mean "only do fetchAcitivites when the component renders IF that variable changes"
+  // It is the modern alternative/replacement for `ComponentDidMount`
   useEffect(() => {
     fetchMaterials();
   }, []);
