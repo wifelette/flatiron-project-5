@@ -11,6 +11,9 @@
  * @property {"INITIALIZE_MATERIALS"} type
  * @property {Material[]} items
  *
+ * @typedef {object} FetchMaterialsAction
+ * @property {"FETCH_MATERIALS"} type
+ *
  * @typedef {AddMaterialAction | RemoveMaterialAction | InitializeMaterialsAction} MaterialAction
  *
  * @typedef {Material[]} MaterialState
