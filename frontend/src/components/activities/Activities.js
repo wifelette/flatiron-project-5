@@ -3,7 +3,7 @@ import { ACTIVITIES_URL, MATERIALS_URL } from "../../App";
 import "../../App.css";
 import HeaderBar from "../header/HeaderBar";
 import Table from "../tables/Table";
-import AddActivitiesForm from "./AddActivitiesForm";
+import AddActivityForm from "./AddActivityForm";
 import { shortDate } from "../../utils/dates";
 import { useSelector, useDispatch } from "../../index";
 import { destroy, getJSON } from "../../utils/jsonapi";
@@ -98,7 +98,7 @@ export default function Activities() {
         }}
       />
       {isShowingForm ? (
-        <AddActivitiesForm onSave={() => setShowingForm(false)} />
+        <AddActivityForm onSave={() => setShowingForm(false)} />
       ) : null}
       <Table onDeleteRow={deleteActivity} columns={columnDetails} rows={rows} />
     </div>

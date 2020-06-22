@@ -4,7 +4,6 @@ import SubmitButton from "../header/SubmitButton";
 import { create } from "../../utils/jsonapi";
 import { ACTIVITIES_URL } from "../../App";
 import { useDispatch, useSelector } from "../../index";
-import Checkbox from "../Checkboxes";
 import Checkboxes from "../Checkboxes";
 
 /**
@@ -13,7 +12,7 @@ import Checkboxes from "../Checkboxes";
  *  @param {() => void} props.onSave
  */
 
-export default function AddActivitiesForm({ onSave }) {
+export default function AddActivityForm({ onSave }) {
   let dispatch = useDispatch();
 
   let [isSaving, setIsSaving] = useState(false);
