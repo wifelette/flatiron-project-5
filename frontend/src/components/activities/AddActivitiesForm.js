@@ -1,21 +1,49 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "../../App.css";
 import SubmitButton from "../header/SubmitButton";
+import { create } from "../../utils/jsonapi";
+import { ACTIVITIES_URL } from "../../App";
+import { useDispatch, useSelector } from "../../index";
+import Checkbox from "../Checkboxes";
+import Checkboxes from "../Checkboxes";
 
-export default function AddActivitiesForm() {
-  function addActivities() {
-    let data = new FormData(form.current);
-    return;
-  }
+/**
+ *
+ * @param {object} props
+ *  @param {() => void} props.onSave
+ */
+
+export default function AddActivitiesForm({ onSave }) {
+  let dispatch = useDispatch();
+
+  let [isSaving, setIsSaving] = useState(false);
 
   let form = /** @type {import("react").MutableRefObject<HTMLFormElement>} */ (useRef());
+
+  async function addActivity() {
+    let formData = new FormData(form.current);
+    setIsSaving(true);
+
+    /** @type {{ data: Activity }} */
+    let payload = await create(
+      `${ACTIVITIES_URL}.json?include=materials,days`,
+      formData
+    );
+
+    form.current.reset();
+    setIsSaving(false);
+    onSave();
+    dispatch({ type: "ADD_ACTIVITY", item: payload.data });
+  }
+
+  let materials = useSelector((state) => state.materials);
 
   return (
     <form
       ref={form}
       onSubmit={(e) => {
         e.preventDefault();
-        addActivities();
+        addActivity();
       }}
     >
       <div className="col-xl-10 col-md-6 mb-4">
@@ -24,7 +52,7 @@ export default function AddActivitiesForm() {
             <p className="text-lg font-weight-bold text-success text-uppercase mb-1">
               Create a New Activity
             </p>
-            <label htmlFor="newDate" className="font-weight-bold">
+            <label htmlFor="newActivitylName" className="font-weight-bold">
               Activity Name
             </label>
             <input
@@ -36,7 +64,8 @@ export default function AddActivitiesForm() {
             />
             <br />
             <p className="font-weight-bold">Materials to Add</p>
-            <SubmitButton body="Create" />
+            <Checkboxes models={materials} relationship="materials" />
+            <SubmitButton disabled={isSaving} body="Create" />
           </div>
         </div>
       </div>
