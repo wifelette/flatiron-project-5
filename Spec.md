@@ -9,15 +9,15 @@
 ### Details
 
 - [x] There should be 2 container components.
-  - _Nav_
+  - _Nav_,
 - [x] There should be 5 stateless components.
 - [x] There should be 3 routes.
   - _Dashboard, Materials, Activities_
 - [x] The Application must make use of `react-router` and proper RESTful routing.
 - [ ] Use Redux middleware to respond to and modify state change.
 - [ ] Make use of async actions and `redux-thunk` middleware to send data to and receive data from a server.
-- [ ] Rails API backend that handles data persistence with a database. Use `fetch()` within your actions to `GET` and `POST` data from your API. Do not use jQuery methods.
-  - _async function create_ in _jsonapi.js_
+- [x] Rails API backend that handles data persistence with a database. Use `fetch()` within your actions to `GET` and `POST` data from your API. Do not use jQuery methods.
+  - _async functions create, destroy, update, etc._ in _jsonapi.js_
 - [ ] Your client-side application should handle the display of data with minimal data manipulation.
 - [x] Your application should have some minimal styling: react-bootstrap or hand-written are fine
 - [ ] Once your app is complete, [fill out this checklist](https://docs.google.com/forms/d/e/1FAIpQLSfX7qH_FqFqJ9vMMhtlHSYxhhafKJm8fe01IvsFNFitFC2nOA/viewform).
@@ -25,7 +25,7 @@
 ## Concepts
 
 - [ ] Good understanding of the react/redux state flow
-- [ ] Good understanding of state and props in React
+- [x] Good understanding of state and props in React
 - [ ] Knowledge of async JS with Promises
 
 ### Things the Reviewer may ask about
