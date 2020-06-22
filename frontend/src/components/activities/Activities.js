@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ACTIVITIES_URL } from "../../App";
+import { ACTIVITIES_URL, MATERIALS_URL } from "../../App";
 import "../../App.css";
 import HeaderBar from "../header/HeaderBar";
 import Table from "../tables/Table";
 import AddActivitiesForm from "./AddActivitiesForm";
 import { shortDate } from "../../utils/dates";
 import { useSelector, useDispatch } from "../../index";
+import { destroy, getJSON } from "../../utils/jsonapi";
 
 export default function Activities() {
   let unfilteredActivities = useSelector((state) => state.activities);
@@ -14,6 +15,7 @@ export default function Activities() {
 
   useEffect(() => {
     fetchActivities();
+    fetchMaterials();
   }, []);
 
   const fetchActivities = async () => {
@@ -29,6 +31,26 @@ export default function Activities() {
       items: newActivities.data,
     });
   };
+
+  const fetchMaterials = async () => {
+    const newMaterials = await getJSON(
+      `${MATERIALS_URL}.json?sort=name&include=activities`
+    );
+
+    dispatch({
+      type: "INITIALIZE_MATERIALS",
+      items: newMaterials.data,
+    });
+  };
+
+  /**
+   * @param {string} id
+   */
+  async function deleteActivity(id) {
+    await destroy(`${ACTIVITIES_URL}/${id}`);
+
+    dispatch({ type: "REMOVE_ACTIVITY", id });
+  }
 
   let [isFiltered, setIsFiltered] = useState(false);
 
@@ -75,8 +97,10 @@ export default function Activities() {
           setShowingForm(!isShowingForm);
         }}
       />
-      {isShowingForm ? <AddActivitiesForm /> : null}
-      <Table onDeleteRow={() => null} columns={columnDetails} rows={rows} />
+      {isShowingForm ? (
+        <AddActivitiesForm onSave={() => setShowingForm(false)} />
+      ) : null}
+      <Table onDeleteRow={deleteActivity} columns={columnDetails} rows={rows} />
     </div>
   );
 }
