@@ -5,7 +5,14 @@ import { create } from "../../utils/jsonapi";
 import { MATERIALS_URL } from "../../App";
 import { useDispatch } from "../../index";
 
-export default function AddMaterialsForm() {
+/**
+ * onSave is a prop to make the Form disappear again after it's submitted.
+ *
+ * @param {object} props
+ *  @param {() => void} props.onSave
+ */
+
+export default function AddMaterialsForm({ onSave }) {
   // useDispatch is a hook that gives us back a function, so by making the variable name `dispatch` we're able to use it like a simpler function
   let dispatch = useDispatch();
 
@@ -34,8 +41,11 @@ export default function AddMaterialsForm() {
     // Reset the form, ie clear it out
     form.current.reset();
 
-    // Once the save operation is done, toggle it back to false, which will re-enable the SubmitButton
+    // Once the save operation is done, toggle it back to false, which will re-enable the SubmitButton for when the Form is shown again. Later I added onSave so this is less useful.
     setIsSaving(false);
+
+    // Toggle it back to hiding the form
+    onSave();
 
     // Next we'll dispatch the action to the Redux store
     dispatch({ type: "ADD_MATERIAL", item: payload.data });
