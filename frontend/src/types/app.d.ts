@@ -22,6 +22,6 @@ interface Activity {
 
 interface Day {
   id: string;
-  date: datetime;
+  date: string;
   activities: Activity[];
 }
