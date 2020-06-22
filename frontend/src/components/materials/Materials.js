@@ -88,7 +88,9 @@ export default function Materials() {
           setShowingForm(!isShowingForm);
         }}
       />
-      {isShowingForm ? <AddMaterialsForm /> : null}
+      {isShowingForm ? (
+        <AddMaterialsForm onSave={() => setShowingForm(false)} />
+      ) : null}
       <Table onDeleteRow={deleteMaterial} columns={columnNames} rows={rows} />
     </div>
   );
