@@ -8,7 +8,9 @@ import React from "react";
 
 export default function FilterButton({ filter }) {
   if (filter) {
-    let body = filter.isFiltered ? filter.show : filter.hide;
+    let body = filter.isFiltered
+      ? filter.buttonTextOnShow
+      : filter.buttonTextOnHide;
 
     return (
       <button

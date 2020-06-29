@@ -44,11 +44,12 @@ export default function Materials() {
     dispatch({ type: "REMOVE_MATERIAL", id });
   }
 
+  // isFiltered is the state Data, and setIsFiltered is a function to update that Data
   let [isFiltered, setIsFiltered] = useState(false);
 
   let filterDetails = {
-    hide: "Hide Unused Materials",
-    show: "Show Unused Materials",
+    buttonTextOnHide: "Hide Unused Materials",
+    buttonTextOnShow: "Show Unused Materials",
     isFiltered,
     onFilter: () => setIsFiltered(!isFiltered),
   };
@@ -58,13 +59,17 @@ export default function Materials() {
   let columnNames = ["Material", "Used For"];
 
   let rows = null;
+  // TODO: I think filteredMaterials vs materials may have ended up adding more complexity than help. Refactor it out later?
   let materials = unfilteredMaterials;
 
+  // Wait until you actually have materials...
   if (materials !== null) {
+    // And then, here's what to do if they're filtered:
     if (isFiltered) {
+      // Filter out the ones that don't have any activities attached
       materials = materials.filter((m) => m.activities.length > 0);
     }
-
+    // Whether or not it's filtered, next do this:
     rows = materials.map((material) => {
       let columns = [
         material.name,

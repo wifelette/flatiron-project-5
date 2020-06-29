@@ -55,8 +55,8 @@ export default function Activities() {
   let [isFiltered, setIsFiltered] = useState(false);
 
   let filterDetails = {
-    hide: "Hide Unscheduled Activities",
-    show: "Show Unscheduled Activities",
+    buttonTextOnHide: "Hide Unscheduled Activities",
+    buttonTextOnShow: "Show Unscheduled Activities",
     isFiltered,
     onFilter: () => setIsFiltered(!isFiltered),
   };
