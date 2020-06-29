@@ -20,7 +20,8 @@ export default function AddMaterialsForm({ onSave }) {
   let [isSaving, setIsSaving] = useState(false);
 
   // useRef allows me to create a variable that is a DOM node, which we need for referring to a form (pre-React I'd have done this with a querySelector).
-  // Later, I can use `form.current` to refer to the form element / node in other code
+  // Later, I can use `form.current` to refer to the form element / node in other code/components
+  // FYI: useRef is in parenthesis just because the inline type needs it that way.
   let form = /** @type {import("react").MutableRefObject<HTMLFormElement>} */ (useRef());
 
   async function addMaterial() {
