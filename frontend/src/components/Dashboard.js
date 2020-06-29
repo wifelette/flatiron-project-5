@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
-import HeaderBar from "./header/HeaderBar";
-import { useSelector, useDispatch } from "../index";
+import { useDispatch, useSelector } from "../index";
+import { fetchActivities } from "../reducers/activities";
+import { fetchDays } from "../reducers/days";
 import AddDaysForm from "./days/AddDaysForm";
-import { DAYS_URL, ACTIVITIES_URL } from "../App";
-import { getJSON } from "../utils/jsonapi";
 import Schedule from "./days/Schedule";
+import HeaderBar from "./header/HeaderBar";
+import { connect } from "react-redux";
 
 // This is a functional component (using hooks). It's significantly simpler than the Class components method. You can see both here for demo purposes. To swap which is in use, change the `export default` from one to the other.
 export default function FunctionalDashboard() {
@@ -14,15 +15,29 @@ export default function FunctionalDashboard() {
   let [isShowingForm, setShowingForm] = useState(false);
 
   useEffect(() => {
-    fetchDays();
-    fetchActivities();
-  }, []);
+    dispatch(fetchDays());
+    dispatch(fetchActivities());
+  }, [dispatch]);
 
-  const fetchDays = async () => {
-    /** @type {{ data: Day[] }} */
-    const newDays = await getJSON(
-      `${DAYS_URL}.json?sort=date&include=activities.materials`
-    );
+  let days = useSelector((state) => state.days);
+
+  return (
+    <div>
+      <HeaderBar
+        headline="Dashboard"
+        mainButton="Add a New Day"
+        onButtonClick={() => {
+          setShowingForm(!isShowingForm);
+        }}
+      />
+      {isShowingForm ? (
+        <AddDaysForm onSave={() => setShowingForm(false)} />
+      ) : null}
+      {days.map((day) => (
+        <Schedule key={day.id} day={day} />
+      ))}
+    </div>
+  );
 }
 
 // This is the same thing, but using a class-based component instead of a functional component. It's here for demo purposes, it is not currently in use.
@@ -57,26 +72,26 @@ class DashboardComponent extends React.Component {
   }
 
   render() {
-  return (
-    <div>
-      <HeaderBar
-        headline="Dashboard"
-        mainButton="Add a New Day"
-        onButtonClick={() => {
+    return (
+      <div>
+        <HeaderBar
+          headline="Dashboard"
+          mainButton="Add a New Day"
+          onButtonClick={() => {
             this.setState({ isShowingForm: !this.state.isShowingForm });
-        }}
-      />
+          }}
+        />
         {this.state.isShowingForm ? (
           <AddDaysForm onSave={() => this.setState({ isShowingForm: false })} />
-      ) : null}
+        ) : null}
         {
           /** @type {any} */ (this.props).days.map((/** @type {any} */ day) => (
-        <Schedule key={day.id} day={day} />
+            <Schedule key={day.id} day={day} />
           ))
         }
-    </div>
-  );
-}
+      </div>
+    );
+  }
 }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(DashboardComponent);

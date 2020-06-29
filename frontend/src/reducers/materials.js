@@ -19,6 +19,10 @@
  * @typedef {Material[]} MaterialState
  */
 
+import { getJSON } from "../utils/jsonapi";
+import { MATERIALS_URL } from "../App";
+import { AppDispatch } from "../index";
+
 /**
  * @param {Material[] | undefined} state
  * @param {MaterialAction} action
@@ -57,3 +61,19 @@ export default (state = [], action) => {
     }
   }
 };
+
+/**
+ * @returns { (dispatch: AppDispatch) => void }
+ */
+export function fetchMaterials() {
+  return async (dispatch) => {
+    const newMaterials = await getJSON(
+      `${MATERIALS_URL}.json?sort=name&include=activities`
+    );
+
+    dispatch({
+      type: "INITIALIZE_MATERIALS",
+      items: newMaterials.data,
+    });
+  };
+}

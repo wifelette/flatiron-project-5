@@ -21,6 +21,10 @@
  * @typedef {Day[]} DayState
  */
 
+import { DAYS_URL } from "../App";
+import { AppDispatch } from "../index";
+import { getJSON } from "../utils/jsonapi";
+
 /**
  * @param {Day[] | undefined} state
  * @param {DayAction} action
@@ -77,3 +81,19 @@ export default (state = [], action) => {
     }
   }
 };
+
+/**
+ * @returns { (dispatch: AppDispatch) => void }
+ */
+export function fetchDays() {
+  return async (dispatch) => {
+    const newDays = await getJSON(
+      `${DAYS_URL}.json?sort=date&include=activities.materials`
+    );
+
+    dispatch({
+      type: "INITIALIZE_DAYS",
+      items: newDays.data,
+    });
+  };
+}

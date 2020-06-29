@@ -1,10 +1,9 @@
-import Checkboxes from "../Checkboxes";
 import React from "react";
-import activities from "../../reducers/activities";
-import SubmitButton from "../header/SubmitButton";
-import { useSelector, useDispatch } from "../../index";
-import { update } from "../../utils/jsonapi";
 import { DAYS_URL } from "../../App";
+import { useDispatch, useSelector } from "../../index";
+import { update } from "../../utils/jsonapi";
+import Checkboxes from "../Checkboxes";
+import SubmitButton from "../header/SubmitButton";
 
 /**
  * @param {object} props

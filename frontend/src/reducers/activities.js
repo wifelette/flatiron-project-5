@@ -16,6 +16,9 @@
  * @typedef {Activity[]} ActivityState
  */
 
+import { ACTIVITIES_URL } from "../App";
+import { getJSON } from "../utils/jsonapi";
+
 /**
  * @param {Activity[] | undefined} state
  * @param {ActivityAction} action
@@ -23,7 +26,7 @@
 export default (state = [], action) => {
   switch (action.type) {
     // This action is used when a new activity list is returned from the server,
-    // because it's already sorted on the backend
+    // to populate the initial redux state (which previously is an empty array by default)
     case "INITIALIZE_ACTIVITIES": {
       return action.items;
     }
@@ -58,3 +61,25 @@ export default (state = [], action) => {
     }
   }
 };
+
+/**
+ * This is a function that returns a function (thunk). The returned function takes a `dispatch` (the same thing that is returned by `useDispatch`).
+ * Because we added the thunk middleware, we can invoke this action using `dispatch(fetchActivities())`.
+ *
+ * The thunk middleware turns a function like this into a valid action.
+ *
+ * @returns { (dispatch: import("../index").AppDispatch) => void }
+ */
+export function fetchActivities() {
+  return async (dispatch) => {
+    /** @type {{ data: Activity[] }} */
+    let newActivities = await getJSON(
+      `${ACTIVITIES_URL}.json?sort=name&include=materials,days`
+    );
+
+    dispatch({
+      type: "INITIALIZE_ACTIVITIES",
+      items: newActivities.data,
+    });
+  };
+}

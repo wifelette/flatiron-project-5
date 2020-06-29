@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ACTIVITIES_URL, MATERIALS_URL } from "../../App";
+import { ACTIVITIES_URL } from "../../App";
 import "../../App.css";
+import { useDispatch, useSelector } from "../../index";
+import { fetchActivities } from "../../reducers/activities";
+import { fetchMaterials } from "../../reducers/materials";
+import { shortDate } from "../../utils/dates";
+import { destroy } from "../../utils/jsonapi";
 import HeaderBar from "../header/HeaderBar";
 import Table from "../tables/Table";
 import AddActivityForm from "./AddActivityForm";
-import { shortDate } from "../../utils/dates";
-import { useSelector, useDispatch } from "../../index";
-import { destroy, getJSON } from "../../utils/jsonapi";
 
 export default function Activities() {
   let unfilteredActivities = useSelector((state) => state.activities);
@@ -14,34 +16,9 @@ export default function Activities() {
   let dispatch = useDispatch();
 
   useEffect(() => {
-    fetchActivities();
-    fetchMaterials();
-  }, []);
-
-  const fetchActivities = async () => {
-    const data = await fetch(
-      `${ACTIVITIES_URL}.json?sort=name&include=materials,days`
-    );
-
-    /** @type {{ data: Activity[] }} */
-    const newActivities = await data.json();
-
-    dispatch({
-      type: "INITIALIZE_ACTIVITIES",
-      items: newActivities.data,
-    });
-  };
-
-  const fetchMaterials = async () => {
-    const newMaterials = await getJSON(
-      `${MATERIALS_URL}.json?sort=name&include=activities`
-    );
-
-    dispatch({
-      type: "INITIALIZE_MATERIALS",
-      items: newMaterials.data,
-    });
-  };
+    dispatch(fetchActivities());
+    dispatch(fetchMaterials());
+  }, [dispatch]);
 
   /**
    * @param {string} id
