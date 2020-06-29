@@ -15,12 +15,9 @@ export default function HeaderBar({
   headline,
   mainButton,
   filter,
+  // We're setting a default of an empty function, but really it's whatever action is on the other side—as in, whatever function <HeaderBar /> passed in as a prop
   onButtonClick = () => {},
 }) {
-  // const showForm = () => {
-  //   return <AddMaterialsForm />;
-  // };
-
   return (
     <div className="container-fluid whole-page" style={{ paddingRight: "0px" }}>
       <h1 className="h3 mb-4 text-gray-800 col-xl-10">

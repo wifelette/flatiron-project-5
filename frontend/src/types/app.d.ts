@@ -1,7 +1,7 @@
 interface FilterDetails {
   isFiltered: boolean;
-  show: string;
-  hide: string;
+  buttonTextOnShow: string;
+  buttonTextOnHide: string;
   onFilter: () => void;
 }
 
