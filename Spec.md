@@ -15,8 +15,10 @@
 - [x] There should be 3 routes.
   - _Dashboard, Materials, Activities_
 - [x] The Application must make use of `react-router` and proper RESTful routing.
-- [ ] Use Redux middleware to respond to and modify state change.
-- [ ] Make use of async actions and `redux-thunk` middleware to send data to and receive data from a server.
+- [x] Use Redux middleware to respond to and modify state change.
+  - _According to the curriculum, `connect()` and `Provider` are Redux middleware, but they're actually just higher order components. So I'm assuming that's what this requirement means as well._
+- [x] Make use of async actions and `redux-thunk` middleware to send data to and receive data from a server.
+  - _Used `thunk` to `fetch` on the Dashboard, Materials and Activities pages._
 - [x] Rails API backend that handles data persistence with a database. Use `fetch()` within your actions to `GET` and `POST` data from your API. Do not use jQuery methods.
   - _async functions create, destroy, update, etc._ in _jsonapi.js_
 - [x] Your client-side application should handle the display of data with minimal data manipulation.
